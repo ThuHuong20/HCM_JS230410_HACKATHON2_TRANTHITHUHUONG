@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+    }
+
+    #header {
+        border: none;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        color:rgb(215, 202, 26);
+        font-size: 20px;
+        background-color: rgb(192, 65, 169);
+    }
+    #sort{
+        display: flex;
+        justify-content: space-between;
+        padding:10px;
+        width: 100%;
+        height: 50px;
+    }
+    input{
+        width: 800px;
+    }
+.movie-desc{
+    padding:10px;
+}
+    #movie-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+    .movie img {
+        width: 350px;
+        height: 400px;
+        margin-left: 10px;
+    }
+    
+</style>
+
+<body>
+    <div id="form">
+        <div id="header">
+            <div href="" onclick="scienceFiction()">Khoa học viễn tưởng</div>
+            <div href="" onclick="humorous()">Hài hước</div>
+            <div href="" onclick="mentality()">Tâm lí</div>
+        </div>
+        <div id="sort">
+             <button onclick="addAll()">Tất cả</button>
+             <input oninput="search()" id="search" type="text" placeholder="Tìm kiếm"  >
+                <select id="type">
+                    <option value="date">Mới nhất</option>
+                    <option value="year">Năm</option>
+                </select>
+        </div>
+        <div id="content"></div>
+    </div>
+    <div id="movie-container">
+    </div>
+    <script>
+        let listMovie = [
+             {
+                id: "humorous1",
+                img: "./img.jpg/Bỗng dưng trúng số.jpg",
+                name: "Bỗng dưng trúng số",
+                type: "Hài hước ",
+                content: "Vé số",
+                date: "27/7/2022"
+            },
+           
+            {
+                id: "scienceFiction3",
+                img: "./img.jpg/black-adam.jpg",
+                name: " Black-adam",
+                type: "Khoa học viễn tưởng ",
+                content: "chiến tranh",
+                date: "12/5/2022"
+            },
+             {
+                id: "mentality2",
+                img: "./img.jpg/thiên nga đen.jpg",
+                name: "Thiên nga đen",
+                type: " Tâm lý-Tình cảm ",
+                content: "Trả thù",
+                date: "20/3/2022"
+            },
+            {
+                id: "scienceFiction2",
+                img: "./img.jpg/Vệ binh dải Ngân Hà.jpg",
+                name: "Vệ binh dải ngân hà",
+                type: "Khoa học viễn tưởng ",
+                content: "đấu tranh",
+                date: "23/6/2022"
+            },
+           
+            {
+                id: "humorous2",
+                img: "./img.jpg/đầu gấu đụng đầu đất.jpg",
+                name: "Đầu gấu đụng đầu đất",
+                type: "Hài hước ",
+                content: "đại ca mất trí nhớ",
+                date: "3/2/2022"
+            },
+             {
+                id: "mentality3",
+                img: "./img.jpg/truy sát.jpg",
+                name: "Thiên nga đen",
+                type: " Tâm lý-Tình cảm ",
+                content: "Cuộc rượt đuổi giữa hai sát thủ",
+                date: "28/9/2022"
+            },
+             {
+                id: "scienceFiction1",
+                img: "./img.jpg/Phim captain_marvel.jpg",
+                name: " Captain Marvel",
+                type: "Khoa học viễn tưởng ",
+                content: "đánh nhau",
+                date: "4/12/2022"
+            },
+            {
+                id: "humorous3",
+                img: "./img.jpg/2081286.jpg",
+                name: "Tôi là não cá vàng",
+                type: "Hài hước",
+                content: "Câu chuyện của một cô gái hay quên",
+                date: "3/7/2022"
+            },
+            {
+                id: "mentality1",
+                img: "./img.jpg/phim penthouse.jpg",
+                name: "Penthouse",
+                type: "Tâm lý-Tình cảm ",
+                content: "tranh giành quyền lực",
+                date: "8/1/2022"
+            },
+           
+           
+
+        ]
+
+
+        function addMovie(param) {
+            let result = "";
+            for (let i = 0; i < param.length; i++) {
+                result +=
+                    `
+                <div class="movie">
+                    <img src="${param[i].img}" alt="">
+                    <div class="movie-desc">
+                        <h4> Tên: ${param[i].name}</h4>
+                        <p>Thể loại: ${param[i].type}</p>
+                        <p>Nội dung: ${param[i].content}</p>
+                        <p>Thời gian chiếu: ${param[i].date}</p>
+                    </div>
+                </div>
+        `
+            }
+            document.getElementById("movie-container").innerHTML = result
+        }
+
+        addMovie(listMovie);
+        function scienceFiction() {
+            console.log(111)
+            let arr = [];
+            for (let i = 0; i < listMovie.length; i++) {
+                if (listMovie[i].id.includes("scienceFiction")) {
+                    arr.push(listMovie[i]);
+                }
+            }
+            console.log(arr)
+            addMovie(arr);
+        }
+        function humorous() {
+            let arr1 = [];
+            for (let i = 0; i < listMovie.length; i++) {
+                if (listMovie[i].id.includes("humorous")) {
+                    arr1.push(listMovie[i]);
+                }
+            }
+
+            addMovie(arr1);
+        }
+        function mentality() {
+            let arr2 = [];
+            for (let i = 0; i < listMovie.length; i++) {
+                if (listMovie[i].id.includes("mentality")) {
+                    arr2.push(listMovie[i]);
+                }
+            }
+            addMovie(arr2);
+        }
+        function addAll(){
+              addMovie(listMovie); 
+        }
+       function search(){
+               let searchByName = document.getElementById("search").value;
+               console.log("searchByName", searchByName);
+               let resultSearch =[];
+               for( let i=0; i < listMovie.length;i++){
+                if(listMovie[i].name.indexOf(searchByName) != -1){
+                    resultSearch.push(listMovie[i]);
+                }
+               }
+               addMovie(resultSearch);
+       }
+     
+    </script>
+</body>
+
+</html>
